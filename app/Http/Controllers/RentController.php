@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Car;
+use App\Models\Client;
 use App\Models\Rent;
 
 class RentController extends Controller
@@ -25,7 +27,10 @@ class RentController extends Controller
      */
     public function create()
     {
-        return view('rents/create');
+        $cars = Car::all();
+        $clients= Client::all();
+
+        return view('rents/create', ['cars' => $cars, 'clients' => $clients]);
     }
 
     /**
@@ -74,9 +79,11 @@ class RentController extends Controller
     public function edit($id)
     {
         $r = Rent::find($id);
+        $cars = Car::all();
+        $clients= Client::all();
 
         if($r){
-            return view('rents/edit', ['rent' => $r]);
+            return view('rents/edit', ['rent' => $r, 'cars' => $cars, 'clients' => $clients]);
         }else{
             return abort(404);
         }

@@ -6,14 +6,30 @@
     <div class="row">
         <div class="col-4">
             <div class="form-group">
-                <label for="client_id">Client ID</label>
-                <input type="number" name="client_id" id="client_id" class="form-control" required />
+                <label for="client_id">Client</label>
+
+                <select class="form-select" name="client_id" id="client_id" required>
+                    <option value=""></option>
+                    @foreach ($clients as $c)
+                        <option value="{{ $c->id }}">
+                            {{ $c->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label for="car_id">Car ID</label>
-                <input type="number" name="car_id" id="car_id" class="form-control" required />
+                <label for="car_id">Car</label>
+
+                <select class="form-select" name="car_id" id="car_id" required>
+                    <option value=""></option>
+                    @foreach ($cars as $c)
+                        <option value="{{ $c->id }}">
+                            {{ $c->model }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-4">
