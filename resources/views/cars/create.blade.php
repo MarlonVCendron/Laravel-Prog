@@ -38,12 +38,14 @@
                 <input type="number" name="km" id="km" class="form-control" required />
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary mt-2">
-                    Create
-                </button>
-            </div>
+
+        <div class="d-flex">
+            <a href="/cars" class="btn btn-secondary mt-2">
+                Go back
+            </a>
+            <button type="submit" class="btn btn-primary mt-2 ms-2">
+                Create
+            </button>
         </div>
     </div>
 </form>
