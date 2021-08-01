@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rent;
 
 class RentController extends Controller
 {
@@ -13,7 +14,8 @@ class RentController extends Controller
      */
     public function index()
     {
-        //
+        $rents = Rent::all();
+        return view('rents/index', ['rents' => $rents]);
     }
 
     /**
@@ -23,7 +25,7 @@ class RentController extends Controller
      */
     public function create()
     {
-        //
+        return view('rents/create');
     }
 
     /**
@@ -34,7 +36,16 @@ class RentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $r = new Rent;
+
+        $r->client_id = $request->input('client_id');
+        $r->car_id = $request->input('car_id');
+        $r->date_start = $request->input('date_start');
+        $r->date_end = $request->input('date_end');
+
+        $r->save();
+
+        return redirect()->route('rents.index');
     }
 
     /**
@@ -45,7 +56,13 @@ class RentController extends Controller
      */
     public function show($id)
     {
-        //
+        $r = Rent::find($id);
+
+        if($r){
+            return view('rents/show', ['rent' => $r]);
+        }else{
+            return abort(404);
+        }
     }
 
     /**
@@ -56,7 +73,13 @@ class RentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $r = Rent::find($id);
+
+        if($r){
+            return view('rents/edit', ['rent' => $r]);
+        }else{
+            return abort(404);
+        }
     }
 
     /**
@@ -68,7 +91,20 @@ class RentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $r = Rent::find($id);
+
+        if($r){
+            $r->client_id = $request->input('client_id');
+            $r->car_id = $request->input('car_id');
+            $r->date_start = $request->input('date_start');
+            $r->date_end = $request->input('date_end');
+
+            $r->save();
+
+            return redirect()->route('rents.index');
+        }else{
+            return abort(404);
+        }
     }
 
     /**
@@ -79,6 +115,8 @@ class RentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rent::destroy($id);
+
+        return redirect()->route('rents.index');
     }
 }

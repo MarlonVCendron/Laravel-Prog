@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::get('/', function () {
 
 Route::resource('cars', CarController::class);
 Route::resource('clients', ClientController::class);
+Route::resource('rents', RentController::class);
