@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <form method="POST" action="/rents">
     @csrf
 
@@ -54,3 +58,5 @@
         </div>
     </div>
 </form>
+
+@stop

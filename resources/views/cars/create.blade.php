@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <form method="POST" action="/cars">
     @csrf
 
@@ -43,3 +47,5 @@
         </div>
     </div>
 </form>
+
+@stop

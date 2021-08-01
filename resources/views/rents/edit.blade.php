@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <?php
 $date_start = (new DateTime($rent->date_start))->format('Y-m-d\TH:i:s');
 $date_end = (new DateTime($rent->date_end))->format('Y-m-d\TH:i:s');
@@ -60,3 +64,5 @@ $date_end = (new DateTime($rent->date_end))->format('Y-m-d\TH:i:s');
         </div>
     </div>
 </form>
+
+@stop

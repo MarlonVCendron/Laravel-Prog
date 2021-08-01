@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <form method="POST" action="/clients/{{ $client->id }}">
     @csrf
     @method('PUT')
@@ -33,3 +37,5 @@
         </div>
     </div>
 </form>
+
+@stop

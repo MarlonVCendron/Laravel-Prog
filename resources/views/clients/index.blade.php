@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <h1>Clients</h1>
 
 @foreach ($clients as $c)
@@ -13,3 +17,5 @@
         </form>
     </div>
 @endforeach
+
+@stop

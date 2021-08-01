@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <form method="POST" action="/cars/{{ $car->id }}">
     @csrf
     @method('PUT')
@@ -44,3 +48,5 @@
         </div>
     </div>
 </form>
+
+@stop

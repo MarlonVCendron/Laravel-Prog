@@ -1,3 +1,7 @@
+@extends('layouts.main')
+
+@section('content')
+
 <h1>Rents</h1>
 
 @foreach ($rents as $r)
@@ -14,3 +18,5 @@
         </form>
     </div>
 @endforeach
+
+@stop
