@@ -21,22 +21,14 @@ $car_values = array_column($cars->toArray(), 'id');
     <div class="row">
         <div class="col-6">
             <div class="form-group">
-                <x-select-input
-                    id="client_id"
-                    :options="$client_options"
-                    :values="$client_values"
-                    :selected="$rent->client_id">
+                <x-select-input id="client_id" :options="$client_options" :values="$client_values" :selected="$rent->client_id">
                     Client
                 </x-select-input>
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <x-select-input
-                    id="car_id"
-                    :options="$car_options"
-                    :values="$car_values"
-                    :selected="$rent->car_id">
+                <x-select-input id="car_id" :options="$car_options" :values="$car_values" :selected="$rent->car_id">
                     Car
                 </x-select-input>
             </div>
@@ -53,13 +45,14 @@ $car_values = array_column($cars->toArray(), 'id');
                 <input type="datetime-local" name="date_end" id="date_end" class="form-control" value="{{ $date_end }}" required />
             </div>
         </div>
-    
-        <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary mt-2">
-                    Update
-                </button>
-            </div>
+
+        <div class="d-flex">
+            <a href="/rents" class="btn btn-secondary mt-2">
+                Go back
+            </a>
+            <button type="submit" class="btn btn-primary mt-2 ms-2">
+                Update
+            </button>
         </div>
     </div>
 </form>
