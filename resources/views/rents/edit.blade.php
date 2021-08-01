@@ -5,6 +5,11 @@
 <?php
 $date_start = (new DateTime($rent->date_start))->format('Y-m-d\TH:i:s');
 $date_end = (new DateTime($rent->date_end))->format('Y-m-d\TH:i:s');
+
+$client_options = array_column($clients->toArray(), 'name');
+$client_values = array_column($clients->toArray(), 'id');
+$car_options = array_column($cars->toArray(), 'model');
+$car_values = array_column($cars->toArray(), 'id');
 ?>
 
 <form method="POST" action="/rents/{{ $rent->id }}">
@@ -16,30 +21,24 @@ $date_end = (new DateTime($rent->date_end))->format('Y-m-d\TH:i:s');
     <div class="row">
         <div class="col-6">
             <div class="form-group">
-                <label for="client_id">Client</label>
-
-                <select class="form-select" name="client_id" id="client_id" required>
-                    <option value=""></option>
-                    @foreach ($clients as $c)
-                        <option value="{{ $c->id }}" {{$c->id == $rent->client_id ? 'selected' : ''}}>
-                            {{ $c->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-select-input
+                    id="client_id"
+                    :options="$client_options"
+                    :values="$client_values"
+                    :selected="$rent->client_id">
+                    Client
+                </x-select-input>
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label for="car_id">Car</label>
-
-                <select class="form-select" name="car_id" id="car_id" required>
-                    <option value=""></option>
-                    @foreach ($cars as $c)
-                        <option value="{{ $c->id }}" {{$c->id == $rent->car_id ? 'selected' : ''}}>
-                            {{ $c->model }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-select-input
+                    id="car_id"
+                    :options="$car_options"
+                    :values="$car_values"
+                    :selected="$rent->car_id">
+                    Car
+                </x-select-input>
             </div>
         </div>
         <div class="col-6">

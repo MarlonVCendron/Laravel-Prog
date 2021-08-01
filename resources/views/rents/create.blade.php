@@ -2,6 +2,13 @@
 
 @section('content')
 
+<?php
+$client_options = array_column($clients->toArray(), 'name');
+$client_values = array_column($clients->toArray(), 'id');
+$car_options = array_column($cars->toArray(), 'model');
+$car_values = array_column($cars->toArray(), 'id');
+?>
+
 <form method="POST" action="/rents">
     @csrf
 
@@ -10,30 +17,22 @@
     <div class="row">
         <div class="col-6">
             <div class="form-group">
-                <label for="client_id">Client</label>
-
-                <select class="form-select" name="client_id" id="client_id" required>
-                    <option value=""></option>
-                    @foreach ($clients as $c)
-                        <option value="{{ $c->id }}">
-                            {{ $c->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-select-input
+                    id="client_id"
+                    :options="$client_options"
+                    :values="$client_values">
+                    Client
+                </x-select-input>
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label for="car_id">Car</label>
-
-                <select class="form-select" name="car_id" id="car_id" required>
-                    <option value=""></option>
-                    @foreach ($cars as $c)
-                        <option value="{{ $c->id }}">
-                            {{ $c->model }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-select-input
+                    id="car_id"
+                    :options="$car_options"
+                    :values="$car_values">
+                    Car
+                </x-select-input>
             </div>
         </div>
         <div class="col-6">
