@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\RentController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,16 @@ use App\Http\Controllers\RentController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function () {
+        return view('home');
+    });
+
+    Route::resource('cars', CarController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('rents', RentController::class);
 });
 
-Route::resource('cars', CarController::class);
-Route::resource('clients', ClientController::class);
-Route::resource('rents', RentController::class);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
