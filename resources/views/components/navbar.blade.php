@@ -8,21 +8,24 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a href="/cars" class="nav-link">
-                        Cars
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/clients" class="nav-link">
-                        Clients
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/rents" class="nav-link">
-                        Rents
-                    </a>
-                </li>
+                @guest
+                @else
+                    <li class="nav-item">
+                        <a href="/cars" class="nav-link">
+                            Cars
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/clients" class="nav-link">
+                            Clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/rents" class="nav-link">
+                            Rents
+                        </a>
+                    </li>
+                @endguest
             </ul>
 
             <ul class="navbar-nav">
